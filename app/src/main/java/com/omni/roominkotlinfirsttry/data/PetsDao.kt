@@ -7,11 +7,11 @@ import android.arch.persistence.room.*
 interface PetsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(pet: Pet)
+    fun insert(pet: PetEntity)
 
     @Delete
-    fun delete(pet: Pet)
+    fun delete(pet: PetEntity)
 
-    @Query("select * from Pet order by name ASC")
-    fun getAllPets():LiveData<List<Pet>>
+    @Query("select * from PetEntity order by name ASC")
+    fun getAllPets():LiveData<List<PetEntity>>
 }

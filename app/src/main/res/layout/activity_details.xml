@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/overview_label"
         app:layout_constraintTop_toTopOf="parent"
-        tools:targetApi="o" />
+        />
 
     <!-- Breed field -->
     <EditText
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/edit_pet_name"
         app:layout_constraintTop_toBottomOf="@+id/edit_pet_name"
-        tools:targetApi="O" />
+         />
 
 
     <!-- Label -->
@@ -82,8 +82,7 @@
         app:layout_constraintEnd_toStartOf="@+id/label_weight_units"
         app:layout_constraintStart_toEndOf="@+id/Measurement_label"
         app:layout_constraintTop_toBottomOf="@+id/gender_label"
-
-        tools:targetApi="o" />
+        />
 
     <!-- Units for weight (kg) -->
     <TextView

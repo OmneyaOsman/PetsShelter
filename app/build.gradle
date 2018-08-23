@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 27
     buildToolsVersion "28.0.1"
@@ -39,6 +41,7 @@ dependencies {
     //Room library
     implementation "android.arch.persistence.room:runtime:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 //    // ViewModel and LiveData
 //    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
 //    //     Support library depends on this lightweight import
