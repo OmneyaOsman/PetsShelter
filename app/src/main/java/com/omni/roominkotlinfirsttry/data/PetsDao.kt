@@ -9,8 +9,16 @@ interface PetsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(pet: PetEntity)
 
+//    @Update
+//    fun update(id :Int)
+
     @Delete
     fun delete(pet: PetEntity)
+
+    @Delete
+    fun deleteAll(pets: List<PetEntity>)
+
+
 
     @Query("select * from PetEntity order by name ASC")
     fun getAllPets():LiveData<List<PetEntity>>

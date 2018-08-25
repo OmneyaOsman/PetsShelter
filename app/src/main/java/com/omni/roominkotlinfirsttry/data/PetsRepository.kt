@@ -6,7 +6,7 @@ import android.os.AsyncTask
 
 /**the Repository implements the logic for deciding whether to fetch data from a network
  *  or use results cached in a local database.*/
-public class PetsRepository(application: Application) {
+ class PetsRepository(application: Application) {
 
     private val petsDao :PetsDao
     private val petsList: LiveData<List<PetEntity>>
@@ -26,12 +26,38 @@ public class PetsRepository(application: Application) {
 
         InsertAsync(petsDao).execute(pet)
     }
+    fun deleteAPet(pet:PetEntity){
+
+        DeleteAsync(petsDao).execute(pet)
+    }
+    fun deleteAllPets(pets:List<PetEntity>){
+
+        DeleteALLAsync(petsDao).execute(pets)
+    }
 
    private  class InsertAsync (private val petsDao: PetsDao):AsyncTask<PetEntity , Void , Void>(){
 
          override fun doInBackground(vararg pet: PetEntity?): Void? {
 
              petsDao.insert(pet[0]!!)
+             return null
+         }
+    }
+
+    private  class DeleteAsync (private val petsDao: PetsDao):AsyncTask<PetEntity , Void , Void>(){
+
+         override fun doInBackground(vararg pet: PetEntity?): Void? {
+
+             petsDao.delete(pet[0]!!)
+             return null
+         }
+    }
+
+    private  class DeleteALLAsync (private val petsDao: PetsDao):AsyncTask<List<PetEntity> , Void , Void>(){
+
+         override fun doInBackground(vararg pets: List<PetEntity>?): Void? {
+
+             petsDao.deleteAll(pets[0]!!)
              return null
          }
     }

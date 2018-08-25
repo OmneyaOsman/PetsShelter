@@ -15,6 +15,7 @@ abstract class PetsDatabase : RoomDatabase() {
         fun getInstance(context: Context): PetsDatabase {
             if (database == null) {
                 database = Room.databaseBuilder(context.applicationContext, PetsDatabase::class.java, "Pets-Database")
+                        .fallbackToDestructiveMigration()
                         .build()
 
             }

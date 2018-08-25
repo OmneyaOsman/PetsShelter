@@ -26,9 +26,6 @@ android {
 }
 
 dependencies {
-
-
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -42,13 +39,10 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
-//    // ViewModel and LiveData
-//    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-//    //     Support library depends on this lightweight import
-//    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
-//    kapt "android.arch.lifecycle:compiler:$lifecycle_version" // use kapt for Kotlin
 
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version" // use kapt for Kotlin
+
 }
