@@ -9,6 +9,7 @@ import com.omni.roominkotlinfirsttry.R
 import com.omni.roominkotlinfirsttry.data.PetEntity
 import kotlinx.android.synthetic.main.list_item.view.*
 
+//TODO add onClick listener to pass pet and work on delete and update PetEntity
  class PetsAdapter(context: Context) : RecyclerView.Adapter<PetsAdapter.PetsViewHolder>() {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)

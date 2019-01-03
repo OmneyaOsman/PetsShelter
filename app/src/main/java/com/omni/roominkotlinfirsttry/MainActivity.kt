@@ -18,63 +18,66 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var petsViewModel: PetViewModel? = null
-    private var allpets :List<PetEntity> ?=null
-    private var adapter :PetsAdapter?=null
+    private lateinit var petsViewModel: PetViewModel
+    private lateinit var allpets: List<PetEntity>
+    private lateinit var adapter: PetsAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fab.setOnClickListener {
+
+        fab?.setOnClickListener {
             val intent = Intent(this, DetailsActivity::class.java)
             startActivity(intent)
         }
+
         petsViewModel = ViewModelProviders.of(this).get(PetViewModel::class.java)
 
         setUpRecyclerView()
 
-        val simpleItemTouchHelper = object: ItemTouchHelper.SimpleCallback(0 ,ItemTouchHelper.RIGHT) {
+        val simpleItemTouchHelper = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?): Boolean {
-               return true
+                return true
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
 
-                petsViewModel!!.delete(viewHolder!!.itemView.tag as PetEntity)
+                petsViewModel.delete(viewHolder!!.itemView.tag as PetEntity)
             }
 
         }
 
-  ItemTouchHelper(simpleItemTouchHelper).attachToRecyclerView(pets_list!!)
+        ItemTouchHelper(simpleItemTouchHelper).attachToRecyclerView(pets_list!!)
     }
 
     //todo read https://www.androidhive.info/2017/09/android-recyclerview-swipe-delete-undo-using-itemtouchhelper/
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_catalog , menu)
-        return  true
+        menuInflater.inflate(R.menu.menu_catalog, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val  id = item!!.itemId
-        when(id) {
+        val id = item!!.itemId
+        when (id) {
             R.id.action_delete_all_entries -> deleteAll()
-            R.id.action_insert_dummy_data-> insertDummyData()
+            R.id.action_insert_dummy_data -> insertDummyData()
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun insertDummyData() {
-        val pet = PetEntity(name = "dolcy" ,breed ="dog" , weight = 44.0 )
-        petsViewModel?.insert(pet)
+        val pet = PetEntity(name = "dolcy", breed = "dog", weight = 44.0)
+        petsViewModel.insert(pet)
 
     }
 
     private fun deleteAll() {
-        if(allpets !=null && allpets!!.isNotEmpty()) {
-            petsViewModel?.deleteAll(allpets!!)
-            adapter!!.removePets()
+        if ( allpets.isNotEmpty()) {
+            petsViewModel.deleteAll(allpets)
+            adapter.removePets()
         }
 
     }
@@ -84,11 +87,11 @@ class MainActivity : AppCompatActivity() {
         pets_list?.layoutManager = LinearLayoutManager(this)
         adapter = PetsAdapter(this)
         pets_list?.adapter = adapter
-        petsViewModel?.allpets?.observe(this, Observer<List<PetEntity>> { t ->
+        petsViewModel.allpets.observe(this, Observer<List<PetEntity>> { t ->
             if (t != null && t.isNotEmpty()) {
                 empty_view.visibility = View.GONE
                 allpets = t
-                adapter!!.setPets(allpets!!)
+                adapter.setPets(allpets)
             } else
                 empty_view.visibility = View.VISIBLE
 

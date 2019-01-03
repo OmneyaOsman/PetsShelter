@@ -9,9 +9,6 @@ interface PetsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(pet: PetEntity)
 
-//    @Update
-//    fun update(id :Int)
-
     @Delete
     fun delete(pet: PetEntity)
 

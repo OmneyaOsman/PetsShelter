@@ -1,6 +1,8 @@
 package com.omni.roominkotlinfirsttry
 
+import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -9,13 +11,19 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.omni.roominkotlinfirsttry.data.PetEntity
 import com.omni.roominkotlinfirsttry.data.PetViewModel
 import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : AppCompatActivity() {
 
-    private var petsViewModel :PetViewModel?=null
+    private lateinit var petsViewModel: PetViewModel
+    private lateinit var gender: String
+    private val currentIntent: Intent by lazy {
+        intent
+    }
+    private lateinit var currentPetEntity: PetEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +49,9 @@ class DetailsActivity : AppCompatActivity() {
             false
         }
 
-
-
+        if (currentIntent.hasExtra("pet")) {
+            currentPetEntity = currentIntent.getParcelableExtra("pet")
+        }
     }
 
     private fun isValidEntry(text: Editable): Boolean {
@@ -50,18 +59,18 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-    private fun setUpSpinner(){
-        val spinnerAdapter = ArrayAdapter.createFromResource(this  ,R.array.array_gender_options ,
+    private fun setUpSpinner() {
+        val spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.array_gender_options,
                 android.R.layout.simple_spinner_item)
 
         spinner_gender.adapter = spinnerAdapter
-        spinner_gender.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
+        spinner_gender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                gender = getString(R.string.unknown_breed)
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val gender = p0.toString()
+                gender = p0.toString()
             }
 
         }
@@ -69,13 +78,16 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_editor , menu)
+        menuInflater.inflate(R.menu.menu_editor, menu)
+        if (!currentIntent.hasExtra("pet"))
+            menu?.findItem(R.id.action_delete)?.isVisible = false
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val itemId = item!!.itemId
-        when(itemId){
+        when (itemId) {
             R.id.action_save -> savePet()
             R.id.action_delete -> deletePet()
         }
@@ -83,51 +95,50 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun deletePet() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        alertDialog(currentPetEntity)
     }
 
     private fun savePet() {
-        //todo insert dummy data
-//        val pet = PetEntity(name = "dolcy" ,breed ="dog" , weight = 44.0 )
         val name = edit_pet_name.text.toString()
         val breed = edit_pet_breed.text.toString()
         val weight = edit_pet_weight.text.toString()
 
-        if(name.isNotEmpty() && breed.isNotEmpty()) {
-            val pet = PetEntity(name = name, breed = breed, weight = weight.toDouble())
-            petsViewModel?.insert(pet)
+        if (name.isNotEmpty() && breed.isNotEmpty()) {
+            val pet = PetEntity(name = name, breed = breed, weight = weight.toDouble(), gender = gender)
+            petsViewModel.insert(pet)
             finish()
-        }else{
-            if(name.isEmpty())
-                edit_pet_name.error ="Required"
+        } else {
+            if (name.isEmpty())
+                edit_pet_name.error = "Required"
             else
-                edit_pet_name.error =null
+                edit_pet_name.error = null
 
-            if(breed.isEmpty())
-                edit_pet_breed.error ="Required"
+            if (breed.isEmpty())
+                edit_pet_breed.error = "Required"
             else
-                edit_pet_breed.error =null
+                edit_pet_breed.error = null
 
 
         }
 
     }
-    //    private fun alertDialog(petEntity: PetEntity){
-//        val builder = AlertDialog.Builder(this)
-//        builder.setMessage("Are you sure ?")
-//        builder.setPositiveButton("Yes"){ _, _ ->
-//            petsViewModel!!.delete(petEntity)
-//            Toast.makeText(this , "$petEntity.name is deleted",Toast.LENGTH_SHORT).show()
-//
-//        }
-//        builder
-//                .setNegativeButton("cancel"){dialog,_ ->
-//                    dialog.dismiss()
-//                }
-//        val dialog: AlertDialog = builder.create()
-//        dialog.show()
-//
-//    }
+
+    private fun alertDialog(petEntity: PetEntity) {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Are you sure ?")
+        builder.setPositiveButton("Yes") { _, _ ->
+            petsViewModel.delete(petEntity)
+            Toast.makeText(this, "$petEntity.name is deleted", Toast.LENGTH_SHORT).show()
+
+        }
+        builder
+                .setNegativeButton("cancel") { dialog, _ ->
+                    dialog.dismiss()
+                }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+
+    }
 
 
 }

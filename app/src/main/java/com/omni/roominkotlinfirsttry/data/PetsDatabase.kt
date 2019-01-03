@@ -10,16 +10,23 @@ abstract class PetsDatabase : RoomDatabase() {
     abstract fun petsDao(): PetsDao
 
     companion object {
-        var database: PetsDatabase? = null
-        @Synchronized
-        fun getInstance(context: Context): PetsDatabase {
-            if (database == null) {
-                database = Room.databaseBuilder(context.applicationContext, PetsDatabase::class.java, "Pets-Database")
-                        .fallbackToDestructiveMigration()
-                        .build()
+        @Volatile
+        private var INSTANCE: PetsDatabase? = null
 
+        fun getDatabase(context: Context): PetsDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
             }
-            return database!!
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        PetsDatabase::class.java,
+                        "Pets_database"
+                ).build()
+                INSTANCE = instance
+                return instance
+            }
         }
     }
 
