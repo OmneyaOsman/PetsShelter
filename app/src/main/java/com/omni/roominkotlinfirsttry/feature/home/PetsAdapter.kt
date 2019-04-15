@@ -1,4 +1,4 @@
-package com.omni.roominkotlinfirsttry.adapter
+package com.omni.roominkotlinfirsttry.feature.home
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.omni.roominkotlinfirsttry.R
-import com.omni.roominkotlinfirsttry.data.PetEntity
 import kotlinx.android.synthetic.main.list_item.view.*
 
 //TODO add onClick listener to pass pet and work on delete and update PetEntity
  class PetsAdapter(context: Context) : RecyclerView.Adapter<PetsAdapter.PetsViewHolder>() {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
-    private var list = mutableListOf<PetEntity>()
+    private var list = mutableListOf<com.omni.entities.PetEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsViewHolder {
         val view = layoutInflater.inflate(R.layout.list_item , parent , false)
@@ -34,7 +33,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
     }
 
 
-     fun setPets(petsList: List<PetEntity>) {
+     fun setPets(petsList: List<com.omni.entities.PetEntity>) {
         list = petsList.toMutableList()
         notifyDataSetChanged()
     }

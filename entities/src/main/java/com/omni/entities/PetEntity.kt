@@ -1,4 +1,4 @@
-package com.omni.roominkotlinfirsttry.data
+package com.omni.entities
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

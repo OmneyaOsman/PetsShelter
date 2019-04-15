@@ -1,4 +1,4 @@
-package com.omni.roominkotlinfirsttry
+package com.omni.roominkotlinfirsttry.feature.details
 
 import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
@@ -12,8 +12,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.omni.roominkotlinfirsttry.data.PetEntity
-import com.omni.roominkotlinfirsttry.data.PetViewModel
+import com.omni.roominkotlinfirsttry.R
+import com.omni.roominkotlinfirsttry.feature.home.PetViewModel
 import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class DetailsActivity : AppCompatActivity() {
     private val currentIntent: Intent by lazy {
         intent
     }
-    private lateinit var currentPetEntity: PetEntity
+    private lateinit var currentPetEntity: com.omni.entities.PetEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,7 +104,7 @@ class DetailsActivity : AppCompatActivity() {
         val weight = edit_pet_weight.text.toString()
 
         if (name.isNotEmpty() && breed.isNotEmpty()) {
-            val pet = PetEntity(name = name, breed = breed, weight = weight.toDouble(), gender = gender)
+            val pet = com.omni.entities.PetEntity(name = name, breed = breed, weight = weight.toDouble(), gender = gender)
             petsViewModel.insert(pet)
             finish()
         } else {
@@ -123,7 +123,7 @@ class DetailsActivity : AppCompatActivity() {
 
     }
 
-    private fun alertDialog(petEntity: PetEntity) {
+    private fun alertDialog(petEntity: com.omni.entities.PetEntity) {
         val builder = AlertDialog.Builder(this)
         builder.setMessage("Are you sure ?")
         builder.setPositiveButton("Yes") { _, _ ->
