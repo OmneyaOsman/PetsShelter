@@ -1,11 +1,12 @@
-package com.omni.roominkotlinfirsttry.data
+package com.omni.domain.database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import com.omni.entities.PetEntity
 
-@Database(entities = [(PetEntity::class)], version = 1)
+@Database(entities = [(PetEntity::class)], version = 1 ,exportSchema = false)
 abstract class PetsDatabase : RoomDatabase() {
     abstract fun petsDao(): PetsDao
 

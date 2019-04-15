@@ -1,11 +1,15 @@
-package com.omni.roominkotlinfirsttry.data
+package com.omni.roominkotlinfirsttry.feature.home
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
-import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.android.Main
-import kotlin.coroutines.experimental.CoroutineContext
+import com.omni.domain.repositories.PetsRepository
+import com.omni.entities.PetEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class PetViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -33,15 +37,15 @@ class PetViewModel(application: Application) : AndroidViewModel(application) {
         parentJob.cancel()
     }
 
-    fun insert(petEntity: PetEntity) = scope.launch(Dispatchers.IO){
+    fun insert(petEntity: com.omni.entities.PetEntity) = scope.launch(Dispatchers.IO){
         petsRepository.insertAPet(petEntity)
     }
 
-    fun delete(petEntity: PetEntity)= scope.launch(Dispatchers.IO) {
+    fun delete(petEntity: com.omni.entities.PetEntity)= scope.launch(Dispatchers.IO) {
         petsRepository.deleteAPet(petEntity)
     }
 
-    fun deleteAll(pets: List<PetEntity>) = scope.launch(Dispatchers.IO) {
+    fun deleteAll(pets: List<com.omni.entities.PetEntity>) = scope.launch(Dispatchers.IO) {
         petsRepository.deleteAllPets(pets)
     }
 
