@@ -11,7 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -27,20 +27,21 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     api project(':entities')
 
-    //Arch components dependecy
-    api 'android.arch.lifecycle:extensions:1.1.1'
-    kapt "android.arch.persistence.room:compiler:1.1.1"
-
-    //coroutines
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
-//    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //Arch components dependency
+    def room_version = "2.1.0-alpha06"
+    def lifecycle_version = "2.0.0"
+    kapt "androidx.room:room-compiler:$room_version"
+    api "androidx.room:room-rxjava2:$room_version"
+    api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    api "io.reactivex.rxjava2:rxjava:2.2.7"
+    api "io.reactivex.rxjava2:rxandroid:2.1.1"
 }
 repositories {
     mavenCentral()

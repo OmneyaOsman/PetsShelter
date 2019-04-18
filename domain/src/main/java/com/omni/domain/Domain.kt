@@ -1,7 +1,7 @@
 package com.omni.domain
 
 import android.app.Application
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 
 
 // liveData here as channel to access application
