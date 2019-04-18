@@ -1,44 +1,39 @@
 package com.omni.domain.repositories
 
-import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.support.annotation.WorkerThread
-import com.omni.domain.database.PetsDao
+import android.util.Log
 import com.omni.domain.database.PetsDatabase
+import com.omni.domain.database.petsDatabase
+import com.omni.entities.PetEntity
+
+ val repository by lazy { PetsRepository() }
 
 /**the Repository implements the logic for deciding whether to fetch data from a network
  *  or use results cached in a local database.*/
-class PetsRepository(application: Application) {
+class PetsRepository(private val database: PetsDatabase = petsDatabase) {
 
-    private val petsDao: PetsDao
-    private val petsList: LiveData<List<com.omni.entities.PetEntity>>
-
-
-    init {
-        val petsDB = PetsDatabase.getDatabase(application)
-        petsDao = petsDB.petsDao()
-        petsList = petsDao.getAllPets()
-    }
-
-    fun getAllPets(): LiveData<List<com.omni.entities.PetEntity>> {
-        return petsList
+    fun getAllPets(): LiveData<List<PetEntity>> {
+        Log.d("dataPet" ,database.isOpen.toString())
+        return database.petsDao.getAllPets()
     }
 
     @WorkerThread
-    suspend fun insertAPet(pet: com.omni.entities.PetEntity) {
-        petsDao.insert(pet)
+    suspend fun insertAPet(pet: PetEntity) {
+        database.petsDao.insert(pet)
+        Log.d("dataPet" ,"PetsRepository")
     }
 
     @WorkerThread
-    suspend fun deleteAPet(pet: com.omni.entities.PetEntity) {
+    suspend fun deleteAPet(pet: PetEntity) {
 
-        petsDao.delete(pet)
+        database.petsDao.delete(pet)
     }
 
     @WorkerThread
-    suspend fun deleteAllPets(pets: List<com.omni.entities.PetEntity>) {
+    suspend fun deleteAllPets(pets: List<PetEntity>) {
 
-        petsDao.deleteAll(pets)
+        database.petsDao.deleteAll(pets)
     }
 
 }

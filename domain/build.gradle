@@ -36,6 +36,7 @@ dependencies {
     //Arch components dependecy
     api 'android.arch.lifecycle:extensions:1.1.1'
     kapt "android.arch.persistence.room:compiler:1.1.1"
+
     //coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
