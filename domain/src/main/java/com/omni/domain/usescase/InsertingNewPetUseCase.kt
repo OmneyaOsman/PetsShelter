@@ -12,8 +12,8 @@ class InsertingNewPetUseCase(private val result: PetsResult,
 
     operator fun invoke(petEntity: PetEntity) {
         petEntity.takeUnless { it.name.isBlank() }
-                .also { emptyViewLiveData.postValue(false) }
-                .let { petsRepository.insertAPet(it!!) }
-                .also { result.add(petEntity) }
+                ?.also { emptyViewLiveData.postValue(false) }
+                ?.let { petsRepository.insertAPet(it) }
+                ?.also { result.add(petEntity) }
     }
 }

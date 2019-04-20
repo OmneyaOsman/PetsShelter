@@ -1,16 +1,16 @@
 package com.omni.roominkotlinfirsttry.feature.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.omni.entities.PetEntity
 import com.omni.roominkotlinfirsttry.R
-import com.omni.roominkotlinfirsttry.feature.details.DetailsActivity
 import kotlinx.android.synthetic.main.activity_main.*
-
+//viewModelFactory = Injection.provideViewModelFactory(this)
+//        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java)
 class MainActivity : AppCompatActivity() {
 
     internal val petsViewModel: PetViewModel by lazy {
@@ -23,8 +23,10 @@ class MainActivity : AppCompatActivity() {
         bindViews()
 
         fab?.setOnClickListener {
-            Intent(this, DetailsActivity::class.java)
-                    .also { startActivity(it) }
+            Toast.makeText(this , "under work" ,Toast.LENGTH_LONG)
+                    .show()
+//            Intent(this, DetailsActivity::class.java)
+//                    .also { startActivity(it) }
         }
 
     }

@@ -13,10 +13,11 @@ fun MainActivity.bindViews() = kotlin.with(petsViewModel) {
         adapter = com.omni.roominkotlinfirsttry.feature.home.PetsAdapter(this@bindViews, petsResult)
     }
     emptyViewLiveData.observe(this@bindViews, Observer { isEmpty ->
-        if (isEmpty!!)
-            empty_view.visibility = View.VISIBLE
-        else
+        Log.d("dataP" , "$isEmpty")
+        if (!isEmpty)
             empty_view.visibility = View.GONE
+        else
+            empty_view.visibility = View.VISIBLE
 
     })
 }

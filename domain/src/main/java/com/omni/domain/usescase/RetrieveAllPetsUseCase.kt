@@ -15,9 +15,10 @@ class RetrieveAllPetsUseCase(
 
     operator fun invoke() {
         petsRepository.getAllPets()
-                .takeUnless { it.isEmpty()}
-                .also { emptyViewLiveData.postValue(false) }
-                .also { result.postValue(it) } ?: result.postValue(ArrayList())
+                .also { emptyViewLiveData.postValue(true) }
+                .takeUnless { it.isNullOrEmpty()}
+                ?.also { emptyViewLiveData.postValue(false) }
+                ?.also { result.postValue(it) } ?: result.postValue(ArrayList())
     }
 
 }

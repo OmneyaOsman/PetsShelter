@@ -32,7 +32,7 @@ fun DetailsActivity.saveAPet() {
 
     if (name.isNotEmpty() && breed.isNotEmpty()) {
         val pet = PetEntity(name = name, breed = breed, weight = weight.toDouble(), gender = gender)
-        petsViewModel.insertNewPet(pet)
+        viewModel.insertNewPet(pet)
         finish()
     } else {
         if (name.isEmpty())

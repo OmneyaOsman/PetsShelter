@@ -38,7 +38,7 @@ dependencies {
     def room_version = "2.1.0-alpha06"
     def lifecycle_version = "2.0.0"
     kapt "androidx.room:room-compiler:$room_version"
-    api "androidx.room:room-rxjava2:$room_version"
+//    api "androidx.room:room-rxjava2:$room_version"
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     api "io.reactivex.rxjava2:rxjava:2.2.7"
     api "io.reactivex.rxjava2:rxandroid:2.1.1"
