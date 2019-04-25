@@ -16,7 +16,10 @@ import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : AppCompatActivity() {
 
-    lateinit var petsViewModel: PetViewModel
+    internal val viewModel: PetViewModel by lazy {
+                ViewModelProviders.of(this).get(PetViewModel::class.java)
+
+    }
     lateinit var gender: String
     private val currentIntent: Intent by lazy {
         intent
@@ -29,7 +32,6 @@ class DetailsActivity : AppCompatActivity() {
         bindViews()
 
         //TODO create DetailsViewModel
-        petsViewModel = ViewModelProviders.of(this).get(PetViewModel::class.java)
 
 
         edit_pet_name.setOnKeyListener { _, _, _ ->

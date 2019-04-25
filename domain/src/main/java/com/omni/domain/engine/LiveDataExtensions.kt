@@ -14,3 +14,9 @@ fun <T> MutableLiveData<List<T>>.add(item: T) {
     this.postValue(updatedItems)
 }
 
+fun <T> MutableLiveData<List<T>>.remove(item: T) {
+    val updatedItems = this.value as ArrayList
+    updatedItems.remove(item)
+    this.postValue(updatedItems)
+}
+
