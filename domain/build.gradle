@@ -40,7 +40,6 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1"
     api project(':entities')
 
-    //Arch components dependency
 
     kapt "androidx.room:room-compiler:$room_version"
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

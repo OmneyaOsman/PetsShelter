@@ -3,7 +3,7 @@ package com.omni.domain.usescase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.nhaarman.mockitokotlin2.mock
-import com.omni.domain.repositories.PetsRepository
+import com.omni.domain.repositories.PetsDataSource
 import com.omni.entities.PetEntity
 import org.junit.Before
 import org.junit.Rule
@@ -26,7 +26,7 @@ class RetrieveAllPetsUseCaseTest {
     fun `invoke with successful response then update resultLiveData value`() {
         //Arrange
         val resultLiveData = MutableLiveData<List<PetEntity>>()
-        val repository = mock<PetsRepository>()
+        val repository = mock<PetsDataSource>()
         val emptyViewLiveData = MutableLiveData<Boolean>()
         val retrieveAllPetsUseCase = RetrieveAllPetsUseCase(resultLiveData , emptyViewLiveData,repository)
         //Act
