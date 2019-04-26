@@ -4,17 +4,28 @@ import com.omni.domain.database.PetsDatabase
 import com.omni.domain.database.petsDatabase
 import com.omni.entities.PetEntity
 
-val repository by lazy { PetsRepository() }
+val repository by lazy { LocalPetsDataSource() }
 
+ interface PetsDataSource {
 
-class PetsRepository(private val database: PetsDatabase = petsDatabase) {
+    fun getAllPets(): List<PetEntity>
 
-    fun getAllPets(): List<PetEntity> = database.petsDao.getAllPets()
+    fun insertAPet(pet: PetEntity)
 
-    fun insertAPet(pet: PetEntity) = database.petsDao.insert(pet)
+    fun deleteAPet(pet: PetEntity)
 
-    fun deleteAPet(pet: PetEntity) = database.petsDao.delete(pet)
+    fun deleteAllPets(pets: List<PetEntity>)
 
-    fun deleteAllPets(pets: List<PetEntity>) = database.petsDao.deleteAll(pets)
+}
+
+class LocalPetsDataSource(private val database: PetsDatabase = petsDatabase): PetsDataSource {
+
+    override fun getAllPets(): List<PetEntity> = database.petsDao.getAllPets()
+
+    override fun insertAPet(pet: PetEntity) = database.petsDao.insert(pet)
+
+    override fun deleteAPet(pet: PetEntity) = database.petsDao.delete(pet)
+
+    override fun deleteAllPets(pets: List<PetEntity>) = database.petsDao.deleteAll(pets)
 
 }
