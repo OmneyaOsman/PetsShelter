@@ -1,7 +1,7 @@
 package com.omni.domain.usescase
 
 import androidx.lifecycle.MutableLiveData
-import com.omni.domain.repositories.PetsRepository
+import com.omni.domain.repositories.PetsDataSource
 import com.omni.domain.repositories.repository
 import com.omni.entities.PetEntity
 
@@ -10,7 +10,7 @@ typealias PetsResult = MutableLiveData<List<PetEntity>>
 class RetrieveAllPetsUseCase(
         private val result: PetsResult,
         private val emptyViewLiveData: MutableLiveData<Boolean>,
-        private val petsRepository: PetsRepository = repository) {
+        private val petsRepository: PetsDataSource = repository) {
 
 
     operator fun invoke() {
