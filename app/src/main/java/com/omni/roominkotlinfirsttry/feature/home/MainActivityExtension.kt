@@ -5,12 +5,12 @@ import android.view.View
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 
-fun MainActivity.bindViews() = kotlin.with(petsViewModel) {
+fun MainActivity.bindViews() = with(petsViewModel) {
 
-    kotlin.with(pets_list) {
+    with(pets_list) {
         Log.d("dataPets", petsResult.value.toString())
         layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@bindViews)
-        adapter = com.omni.roominkotlinfirsttry.feature.home.PetsAdapter(this@bindViews, petsResult)
+        adapter = PetsAdapter(this@bindViews, petsResult)
     }
     emptyViewLiveData.observe(this@bindViews, Observer { isEmpty ->
         Log.d("dataP" , "$isEmpty")
