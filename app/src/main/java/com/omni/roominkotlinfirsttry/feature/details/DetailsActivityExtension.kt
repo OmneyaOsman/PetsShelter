@@ -8,7 +8,7 @@ import com.omni.roominkotlinfirsttry.R
 import kotlinx.android.synthetic.main.activity_details.*
 
 fun DetailsActivity.bindViews() {
-    kotlin.with(spinner_gender) {
+    with(spinner_gender) {
         adapter = ArrayAdapter.createFromResource(this@bindViews, R.array.array_gender_options,
                 android.R.layout.simple_spinner_item)
 
