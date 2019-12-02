@@ -9,16 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".PetsApplication"
+        android:name=".presentation.feature.ShelterApplication"
         >
-        <activity android:name=".feature.home.MainActivity">
+        <activity android:name="com.omni.roominkotlinfirsttry.presentation.feature.home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.details.DetailsActivity"></activity>
+        <activity android:name="com.omni.roominkotlinfirsttry.presentation.feature.details.DetailsActivity"></activity>
     </application>
 
 </manifest>
