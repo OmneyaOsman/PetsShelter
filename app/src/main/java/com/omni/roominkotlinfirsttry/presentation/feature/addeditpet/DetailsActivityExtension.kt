@@ -1,10 +1,10 @@
-package com.omni.roominkotlinfirsttry.presentation.feature.details
+package com.omni.roominkotlinfirsttry.presentation.feature.addeditpet
 
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.omni.roominkotlinfirsttry.entities.PetEntity
 import com.omni.roominkotlinfirsttry.R
+import com.omni.roominkotlinfirsttry.entities.PetEntity
 import kotlinx.android.synthetic.main.activity_details.*
 
 fun DetailsActivity.bindViews() {
@@ -32,7 +32,7 @@ fun DetailsActivity.saveAPet() {
 
     if (name.isNotEmpty() && breed.isNotEmpty()) {
         val pet = PetEntity(name = name, breed = breed, weight = weight.toDouble(), gender = gender)
-        viewModel.insertNewPet(pet)
+        viewModel.savePet(pet)
         finish()
     } else {
         if (name.isEmpty())

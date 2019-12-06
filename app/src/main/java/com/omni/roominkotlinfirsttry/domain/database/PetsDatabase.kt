@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.omni.roominkotlinfirsttry.domain.applicationLiveData
 import com.omni.roominkotlinfirsttry.domain.getApplication
+import com.omni.roominkotlinfirsttry.entities.PetEntity
 
 
 private const val DATABASE_NAME = "Pets_database"
@@ -22,7 +23,7 @@ private fun buildDatabase(context: Context) =
                 .build()
 
 
-@Database(entities = [(com.omni.roominkotlinfirsttry.entities.PetEntity::class)], version = 1, exportSchema = false)
+@Database(entities = [(PetEntity::class)], version = 1, exportSchema = false)
 abstract class PetsDatabase : RoomDatabase() {
     abstract val petsDao: PetsDao
 

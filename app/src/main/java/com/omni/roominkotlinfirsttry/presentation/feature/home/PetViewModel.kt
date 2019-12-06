@@ -2,11 +2,13 @@ package com.omni.roominkotlinfirsttry.presentation.feature.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.omni.roominkotlinfirsttry.domain.ViewState
 import com.omni.roominkotlinfirsttry.domain.engine.toMutableLiveData
 import com.omni.roominkotlinfirsttry.domain.repositories.PetsDataSource
 import com.omni.roominkotlinfirsttry.domain.repositories.repository
 import com.omni.roominkotlinfirsttry.entities.PetEntity
+import kotlinx.coroutines.launch
 
 typealias PetsResult = MutableLiveData<List<PetEntity>>
 
@@ -21,7 +23,8 @@ class PetViewModel(
     }
 
     private fun retrievePets() {
-        viewState.postValue(ViewState(loading = true))
+//        viewState.value = viewState.value?.copy(loading = true)
+//        viewState.postValue(ViewState(loading = true))
 //        petsRepository.getAllPets()
 //                .also { emptyViewLiveData.postValue(true) }
 //                .takeUnless { it.isNullOrEmpty()}
@@ -30,11 +33,14 @@ class PetViewModel(
 
     }
 
-    fun insertNewPet(petEntity: PetEntity) {
-//        petEntity.takeUnless { it.name.isBlank() }
-//                ?.also { emptyViewLiveData.postValue(false) }
-//                ?.let { petsRepository.insertAPet(it) }
-//                ?.also { result.add(petEntity) }
+    fun savePet(petEntity: PetEntity) {
+        petEntity.takeUnless { it.name.isBlank() }
+                ?.let {
+                    viewModelScope.launch {
+                        petsRepository.insertAPet(it)
+                    }
+                }
+                ?.also { viewState.postValue(ViewState(success = true)) }
     }
 
 

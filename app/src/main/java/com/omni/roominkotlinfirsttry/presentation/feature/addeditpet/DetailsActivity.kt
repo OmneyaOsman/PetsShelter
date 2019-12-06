@@ -1,4 +1,4 @@
-package com.omni.roominkotlinfirsttry.presentation.feature.details
+package com.omni.roominkotlinfirsttry.presentation.feature.addeditpet
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -9,8 +9,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
-import com.omni.roominkotlinfirsttry.entities.PetEntity
 import com.omni.roominkotlinfirsttry.R
+import com.omni.roominkotlinfirsttry.entities.PetEntity
 import com.omni.roominkotlinfirsttry.presentation.feature.home.PetViewModel
 import kotlinx.android.synthetic.main.activity_details.*
 
@@ -51,7 +51,7 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         if (currentIntent.hasExtra("pet")) {
-            currentPetEntity = currentIntent.getParcelableExtra("pet")
+//            currentPetEntity = currentIntent.getParcelableExtra("pet")
         }
     }
 

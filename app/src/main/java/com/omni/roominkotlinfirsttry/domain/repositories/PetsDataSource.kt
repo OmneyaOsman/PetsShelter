@@ -14,7 +14,7 @@ interface PetsDataSource {
 
    suspend fun getPetById(petId: String): Result<PetEntity>
 
-    suspend fun insertAPet(pet: PetEntity)
+    suspend fun insertAPet(pet: PetEntity):Long
 
     suspend fun updateAPet(pet: PetEntity)
 

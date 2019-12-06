@@ -1,9 +1,9 @@
 package com.omni.roominkotlinfirsttry.domain
 
 data class ViewState(
-        val errorMsg: String? = null,
-        val loading: Boolean = false,
-        val success: Boolean = false
+        var errorMsg: String? = null,
+        var loading: Boolean = false,
+        var success: Boolean = false
 )
 
 sealed class Result<out R> {

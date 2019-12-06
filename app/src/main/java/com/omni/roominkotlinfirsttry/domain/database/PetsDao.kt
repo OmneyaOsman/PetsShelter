@@ -11,16 +11,19 @@ interface PetsDao {
     fun observeAllPets(): LiveData<List<PetEntity>>
 
     @Query("select * from PetEntity order by name ASC")
-    fun getAllPets(): List<PetEntity>
+    suspend fun getAllPets(): List<PetEntity>
 
     @Query("select * from PetEntity where entryid=:petId")
     fun observePetById(petId: String): LiveData<PetEntity>
 
     @Query("select * from PetEntity where entryid=:petId")
-    fun getPetById(petId: String): PetEntity?
+    suspend fun getPetById(petId: String): PetEntity?
+
+    @Query("select * from PetEntity where name=:petName")
+    suspend fun findPetByName(petName: String): PetEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(pet: PetEntity)
+    suspend fun insert(pet: PetEntity): Long
 
     @Update
     suspend fun update(pet: PetEntity): Int
