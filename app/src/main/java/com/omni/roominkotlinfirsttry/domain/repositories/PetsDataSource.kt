@@ -10,15 +10,15 @@ interface PetsDataSource {
 
     suspend fun getAllPets(): Result<List<PetEntity>>
 
-    fun observePet(petId: String): LiveData<Result<PetEntity>>
+    fun observePet(petId: Int): LiveData<Result<PetEntity>>
 
-   suspend fun getPetById(petId: String): Result<PetEntity>
+   suspend fun getPetById(petId: Int): Result<PetEntity>
 
     suspend fun insertAPet(pet: PetEntity):Long
 
     suspend fun updateAPet(pet: PetEntity)
 
-    suspend fun deleteAPetById(petId: String)
+    suspend fun deleteAPetById(petId: Int)
 
     suspend fun deleteAllPets(pets: List<PetEntity>)
 

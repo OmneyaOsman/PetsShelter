@@ -21,7 +21,7 @@ class LocalPetsDataSource(private val database: PetsDatabase = petsDatabase,
                 Result.Success(it)
             }
 
-    override fun observePet(petId: String): LiveData<Result<PetEntity>> =
+    override fun observePet(petId: Int): LiveData<Result<PetEntity>> =
             database.petsDao.observePetById(petId).map {
                 Result.Success(it)
             }
@@ -35,7 +35,7 @@ class LocalPetsDataSource(private val database: PetsDatabase = petsDatabase,
     }
 
 
-    override suspend fun getPetById(petId: String): Result<PetEntity> = withContext(ioDispatcher) {
+    override suspend fun getPetById(petId: Int): Result<PetEntity> = withContext(ioDispatcher) {
         try {
             val pet = database.petsDao.getPetById(petId)
             if (pet != null) {
@@ -57,7 +57,7 @@ class LocalPetsDataSource(private val database: PetsDatabase = petsDatabase,
                 database.petsDao.update(pet)
             }
 
-    override suspend fun deleteAPetById(petId: String) = withContext<Unit>(ioDispatcher) {
+    override suspend fun deleteAPetById(petId: Int) = withContext<Unit>(ioDispatcher) {
         database.petsDao.deletePetById(petId)
     }
 
