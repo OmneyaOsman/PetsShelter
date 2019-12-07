@@ -27,6 +27,15 @@ android {
     }
 
 }
+android.sourceSets {
+    test {
+        java.srcDirs += "$projectDir/src/testUtils"
+    }
+
+    androidTest {
+        java.srcDirs += "$projectDir/src/testUtils"
+    }
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')

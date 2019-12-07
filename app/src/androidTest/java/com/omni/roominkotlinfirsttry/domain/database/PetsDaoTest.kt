@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.android.architecture.blueprints.todoapp.PetsFactory
 import com.omni.roominkotlinfirsttry.entities.PetEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert
 import org.hamcrest.core.IsEqual
 import org.junit.After
@@ -25,7 +26,6 @@ class PetDaoTest {
 //    var instantExecutorRule = InstantTaskExecutorRule()
     private lateinit var db: PetsDatabase
     private lateinit var petDao: PetsDao
-    private val pet = PetEntity(name = "Lucy", breed = "breed", gender = "Female", weight = 30.0)
 
     @Before
     fun setUpLocalDataSource() {
@@ -42,11 +42,12 @@ class PetDaoTest {
     }
 
     @Test
-    fun insertNewPetSavesData() = runBlockingTest {
+    fun insertNewPetSavesData() = runBlocking {
         //arrange
+        val pet = PetsFactory.TEST_PET
+
         // Act
         petDao.insert(pet)
-        advanceTimeBy(1_000)
         val petFromDB: PetEntity? = petDao.findPetByName(pet.name)
 
         //assert
