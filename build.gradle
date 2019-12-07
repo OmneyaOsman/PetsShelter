@@ -4,6 +4,7 @@ buildscript {
     ext {
         appcompat_version = '1.1.0'
         room_version = '2.2.2'
+        pagingVersion = '2.1.0'
         lifecycle_version = '2.1.0'
         androidXTestCoreVersion = '1.2.0'
         archLifecycleVersion = '2.2.0-alpha01'
@@ -26,9 +27,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.5.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 

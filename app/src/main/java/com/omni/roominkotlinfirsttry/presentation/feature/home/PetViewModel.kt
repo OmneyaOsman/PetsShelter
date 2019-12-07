@@ -23,8 +23,10 @@ class PetViewModel(
     }
 
     private fun retrievePets() {
-//        viewState.value = viewState.value?.copy(loading = true)
-//        viewState.postValue(ViewState(loading = true))
+        viewState.postValue(ViewState(loading = true))
+        viewModelScope.launch {
+            petsRepository.getAllPets()
+        }
 //        petsRepository.getAllPets()
 //                .also { emptyViewLiveData.postValue(true) }
 //                .takeUnless { it.isNullOrEmpty()}

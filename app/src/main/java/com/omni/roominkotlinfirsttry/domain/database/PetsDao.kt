@@ -1,6 +1,7 @@
 package com.omni.roominkotlinfirsttry.domain.database
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.omni.roominkotlinfirsttry.entities.PetEntity
 
@@ -10,14 +11,17 @@ interface PetsDao {
     @Query("select * from PetEntity order by name ASC")
     fun observeAllPets(): LiveData<List<PetEntity>>
 
+    @Query("select * from PetEntity where entryid=:petId")
+    fun observePetById(petId: Int): LiveData<PetEntity>
+
     @Query("select * from PetEntity")
     suspend fun getAllPets(): List<PetEntity>
 
+    @Query("select * from PetEntity")
+    suspend fun retrievePets(): DataSource.Factory<Int ,PetEntity>
+
     @Query("select * from PetEntity order by name ASC")
     suspend fun getOrderedPetsByName(): List<PetEntity>
-
-    @Query("select * from PetEntity where entryid=:petId")
-    fun observePetById(petId: Int): LiveData<PetEntity>
 
     @Query("select * from PetEntity where entryid=:petId")
     suspend fun getPetById(petId: Int): PetEntity?

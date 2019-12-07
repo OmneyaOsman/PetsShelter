@@ -27,6 +27,7 @@ android {
     }
 
 }
+// this to share TestShared between Test and AndroidTest
 android.sourceSets {
     test {
         java.srcDirs += "$projectDir/src/testUtils"
@@ -53,14 +54,14 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version" //  Kotlin Extensions and Coroutines support for Room
-
-     //  ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
 
     //Local test
     testImplementation 'junit:junit:4.12'
@@ -76,10 +77,10 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-library:$hamcrestVersion"
 
     // Instrumented testing
-    androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
+    androidTestImplementation 'androidx.test:runner:1.3.0-alpha03'
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
-    // AndroidX Test - Instrumented testing
+    // AndroidX Test
     androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha03'
 }
 

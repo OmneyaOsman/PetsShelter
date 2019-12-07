@@ -2,6 +2,9 @@ package com.omni.roominkotlinfirsttry.domain.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import androidx.paging.Config
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.omni.roominkotlinfirsttry.domain.Result
 import com.omni.roominkotlinfirsttry.domain.database.PetsDatabase
 import com.omni.roominkotlinfirsttry.domain.database.petsDatabase
@@ -31,6 +34,17 @@ class LocalPetsDataSource(private val database: PetsDatabase = petsDatabase,
             Result.Success(database.petsDao.getAllPets())
         } catch (e: Exception) {
             Result.Error(e)
+        }
+    }
+
+    override suspend fun retrievePets(): Result<LiveData<PagedList<PetEntity>>> = withContext(ioDispatcher) {
+        val all = database.petsDao.retrievePets()
+                .toLiveData(Config(pageSize = 10, enablePlaceholders = true, maxSize = 200))
+
+        return@withContext try {
+            Result.Success(all)
+        } catch (ex: Exception) {
+            Result.Error(ex)
         }
     }
 
