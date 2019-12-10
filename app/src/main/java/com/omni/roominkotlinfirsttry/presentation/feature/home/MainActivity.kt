@@ -3,13 +3,11 @@ package com.omni.roominkotlinfirsttry.presentation.feature.home
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.omni.roominkotlinfirsttry.R
 import com.omni.roominkotlinfirsttry.entities.PetEntity
-import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 
@@ -24,12 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 //        bindViews()
 
-        fab?.setOnClickListener {
-            Toast.makeText(this, "under work", Toast.LENGTH_LONG)
-                    .show()
-//            Intent(this, DetailsActivity::class.java)
-//                    .also { startActivity(it) }
-        }
 
 
     }

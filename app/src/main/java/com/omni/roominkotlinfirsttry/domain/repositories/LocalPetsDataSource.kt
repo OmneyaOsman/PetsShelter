@@ -5,10 +5,10 @@ import androidx.lifecycle.map
 import androidx.paging.Config
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
-import com.omni.roominkotlinfirsttry.domain.Result
 import com.omni.roominkotlinfirsttry.domain.database.PetsDatabase
 import com.omni.roominkotlinfirsttry.domain.database.petsDatabase
 import com.omni.roominkotlinfirsttry.entities.PetEntity
+import com.omni.roominkotlinfirsttry.entities.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -37,16 +37,9 @@ class LocalPetsDataSource(private val database: PetsDatabase = petsDatabase,
         }
     }
 
-    override suspend fun retrievePets(): Result<LiveData<PagedList<PetEntity>>> = withContext(ioDispatcher) {
-        val all = database.petsDao.retrievePets()
-                .toLiveData(Config(pageSize = 10, enablePlaceholders = true, maxSize = 200))
-
-        return@withContext try {
-            Result.Success(all)
-        } catch (ex: Exception) {
-            Result.Error(ex)
-        }
-    }
+    override fun loadPets(): LiveData<PagedList<PetEntity>> =
+            database.petsDao.retrievePets()
+                    .toLiveData(Config(pageSize = 30))
 
 
     override suspend fun getPetById(petId: Int): Result<PetEntity> = withContext(ioDispatcher) {

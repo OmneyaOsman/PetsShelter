@@ -21,6 +21,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     dataBinding {
         enabled = true
         enabledForTests = true
@@ -44,7 +52,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation "androidx.annotation:annotation:$androidXAnnotations"
+    implementation "androidx.annotation:annotation:1.1.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
@@ -74,7 +82,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version" // Test helpers for LiveData
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
-    testImplementation "org.hamcrest:hamcrest-library:$hamcrestVersion"
+    testImplementation "org.hamcrest:hamcrest-library:2.2"
 
     // Instrumented testing
     androidTestImplementation 'androidx.test:runner:1.3.0-alpha03'

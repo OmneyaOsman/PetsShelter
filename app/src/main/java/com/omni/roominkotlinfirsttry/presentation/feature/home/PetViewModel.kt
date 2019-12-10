@@ -1,38 +1,33 @@
 package com.omni.roominkotlinfirsttry.presentation.feature.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omni.roominkotlinfirsttry.domain.ViewState
-import com.omni.roominkotlinfirsttry.domain.engine.toMutableLiveData
+import androidx.paging.PagedList
 import com.omni.roominkotlinfirsttry.domain.repositories.PetsDataSource
 import com.omni.roominkotlinfirsttry.domain.repositories.repository
 import com.omni.roominkotlinfirsttry.entities.PetEntity
+import com.omni.roominkotlinfirsttry.entities.ViewState
 import kotlinx.coroutines.launch
 
-typealias PetsResult = MutableLiveData<List<PetEntity>>
+typealias PetsResult = LiveData<PagedList<PetEntity>>
 
 class PetViewModel(
         val viewState: MutableLiveData<ViewState> = MutableLiveData(),
-        val petsResult: PetsResult = ArrayList<PetEntity>().toMutableLiveData(),
         private val petsRepository: PetsDataSource = repository
 ) : ViewModel() {
 
+    private var _payload: PetsResult = petsRepository.loadPets()
+    val payload: PetsResult = _payload
+
+
     init {
-        retrievePets()
+        updateViewState(ViewState(loading = true))
     }
 
-    private fun retrievePets() {
-        viewState.postValue(ViewState(loading = true))
-        viewModelScope.launch {
-            petsRepository.getAllPets()
-        }
-//        petsRepository.getAllPets()
-//                .also { emptyViewLiveData.postValue(true) }
-//                .takeUnless { it.isNullOrEmpty()}
-//                ?.also { emptyViewLiveData.postValue(false) }
-//                ?.also { result.postValue(it) } ?: result.postValue(ArrayList())
-
+    private fun updateViewState(state: ViewState) {
+        viewState.postValue(state)
     }
 
     fun savePet(petEntity: PetEntity) {

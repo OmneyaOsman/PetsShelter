@@ -18,7 +18,7 @@ interface PetsDao {
     suspend fun getAllPets(): List<PetEntity>
 
     @Query("select * from PetEntity")
-    suspend fun retrievePets(): DataSource.Factory<Int ,PetEntity>
+    fun retrievePets(): DataSource.Factory<Int ,PetEntity>
 
     @Query("select * from PetEntity order by name ASC")
     suspend fun getOrderedPetsByName(): List<PetEntity>

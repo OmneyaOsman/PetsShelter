@@ -2,8 +2,8 @@ package com.omni.roominkotlinfirsttry.domain.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import com.omni.roominkotlinfirsttry.domain.Result
 import com.omni.roominkotlinfirsttry.entities.PetEntity
+import com.omni.roominkotlinfirsttry.entities.Result
 
 interface PetsDataSource {
 
@@ -13,7 +13,7 @@ interface PetsDataSource {
 
     suspend fun getAllPets(): Result<List<PetEntity>>
 
-    suspend fun retrievePets(): Result<LiveData<PagedList<PetEntity>>>
+    fun loadPets(): LiveData<PagedList<PetEntity>>
 
     suspend fun getPetById(petId: Int): Result<PetEntity>
 

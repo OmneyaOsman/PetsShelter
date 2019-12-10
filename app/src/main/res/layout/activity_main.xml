@@ -1,75 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.feature.home.MainActivity">
 
-    <data>
-
-        <variable
-            name="petsViewModel"
-            type="com.omni.roominkotlinfirsttry.presentation.feature.home.PetViewModelKt" />
-    </data>
-
-    <FrameLayout
+    <fragment
+        android:id="@+id/activity_main_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.feature.home.MainActivity">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pets_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/pet_list_item" />
-
-        <!--Empty view for the list-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/empty_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/empty_shelter_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/shelter_image"
-                android:src="@drawable/ic_empty_shelter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/empty_title_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:paddingTop="@dimen/padding_16"
-                android:text="@string/empty_view_title_text"
-                android:textAppearance="?android:textAppearanceMedium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/empty_shelter_image" />
-
-            <TextView
-                android:id="@+id/empty_subtitle_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:paddingTop="@dimen/padding_8"
-                android:text="@string/empty_view_subtitle_text"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/off_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/empty_title_text" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_add_pet" />
-    </FrameLayout>
-</layout>
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_navigation" />
+</FrameLayout>
