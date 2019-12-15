@@ -7,6 +7,7 @@ import androidx.paging.PagedList
 import com.omni.roominkotlinfirsttry.domain.repositories.PetsDataSource
 import com.omni.roominkotlinfirsttry.domain.repositories.repository
 import com.omni.roominkotlinfirsttry.entities.PetEntity
+import com.omni.roominkotlinfirsttry.entities.Result
 import kotlinx.coroutines.launch
 
 typealias PetsResult = LiveData<PagedList<PetEntity>>
@@ -27,21 +28,23 @@ class PetViewModel(private val petsRepository: PetsDataSource = repository) : Vi
     }
 
 
-    fun delete(petEntity: PetEntity) {
-//        petEntity.takeUnless { it.name.isBlank() }
-//                ?.let { petsRepository.deleteAPet(it)}
-//                ?.let { result.remove(petEntity) }
-//
-//        result.takeIf {it.value?.isNullOrEmpty() !!}
+    fun deletePet(petId: Int) {
+        viewModelScope.launch {
+            petId.let {
+                petsRepository.deleteAPetById(it)
+            }
+        }
 //                .also { emptyViewLiveData.postValue(true) }
     }
 
     fun deleteAll() {
-//        petsRepository.getAllPets()
-//                .takeUnless { it.isEmpty()}
-//                ?.let { petsRepository.deleteAllPets(it) }
-//                ?.also { emptyViewLiveData.postValue(true) }
-//                ?.also { result.postValue(ArrayList()) }
+        viewModelScope.launch {
+            petsRepository.getAllPets()
+                    .let {
+                        if (it is Result.Success)
+                            petsRepository.deleteAllPets(it.data)
+                    }
+        }
     }
 
 

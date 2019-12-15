@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.omni.roominkotlinfirsttry.R
 import com.omni.roominkotlinfirsttry.entities.PetEntity
-import timber.log.Timber
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,10 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        bindViews()
-
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -45,13 +39,7 @@ class MainActivity : AppCompatActivity() {
     private fun insertDummyData() {
         val pet = PetEntity(name = "dolcy", breed = "dog", weight = 44.0)
         petsViewModel.savePet(pet)
-        petsViewModel.viewState.observe(this, Observer {
-            if (it == null)
-                Timber.tag("Main Insert").d(String.format("failed", "failed"))
-            else
-                Timber.tag("Main Insert").d(String.format("Success", it.success.toString()))
 
-        })
     }
 }
 
