@@ -8,8 +8,8 @@
     <item
         android:id="@+id/action_save"
         android:title="@string/action_save"
-        android:icon="@drawable/ic_done"
-        app:showAsAction="always" />
+        android:icon="@drawable/ic_done_red"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_delete"

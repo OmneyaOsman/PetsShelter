@@ -1,4 +1,4 @@
-package com.omni.roominkotlinfirsttry.presentation.feature.home
+package com.omni.roominkotlinfirsttry.presentation.feature.addeditpet
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -7,15 +7,11 @@ import androidx.paging.PagedList
 import com.omni.roominkotlinfirsttry.domain.repositories.PetsDataSource
 import com.omni.roominkotlinfirsttry.domain.repositories.repository
 import com.omni.roominkotlinfirsttry.entities.PetEntity
-import com.omni.roominkotlinfirsttry.entities.Result
 import kotlinx.coroutines.launch
 
 typealias PetsResult = LiveData<PagedList<PetEntity>>
 
 class PetViewModel(private val petsRepository: PetsDataSource = repository) : ViewModel() {
-
-    private var _payload: PetsResult = petsRepository.loadPets()
-    val payload: PetsResult = _payload
 
 
     fun savePet(petEntity: PetEntity) {
@@ -34,22 +30,5 @@ class PetViewModel(private val petsRepository: PetsDataSource = repository) : Vi
                 petsRepository.deleteAPetById(it)
             }
         }
-//                .also { emptyViewLiveData.postValue(true) }
     }
-
-    fun deleteAll() {
-        viewModelScope.launch {
-            petsRepository.getAllPets()
-                    .let {
-                        if (it is Result.Success)
-                            petsRepository.deleteAllPets(it.data)
-                    }
-        }
-    }
-
-
-    override fun onCleared() {
-        super.onCleared()
-    }
-
 }

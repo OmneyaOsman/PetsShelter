@@ -8,6 +8,15 @@
     <fragment
         android:id="@+id/petsHomeFragment"
         android:name="com.omni.roominkotlinfirsttry.presentation.feature.home.PetsHomeFragment"
-        android:label="PetsHomeFragment"
-        tools:layout="@layout/pets_home_fragment"/>
+        android:label="@string/app_name"
+        tools:layout="@layout/pets_home_fragment">
+        <action
+            android:id="@+id/action_petsHomeFragment_to_addEditPetFragment"
+            app:destination="@id/addEditPetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditPetFragment"
+        android:name="com.omni.roominkotlinfirsttry.presentation.feature.addeditpet.AddEditPetFragment"
+        android:label="New Pet"
+        tools:layout="@layout/add_edit_task_fragment"/>
 </navigation>
