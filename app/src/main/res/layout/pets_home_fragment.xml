@@ -7,7 +7,7 @@
 
         <variable
             name="petsViewModel"
-            type="com.omni.roominkotlinfirsttry.presentation.feature.home.PetViewModel" />
+            type="com.omni.roominkotlinfirsttry.presentation.feature.home.PetsListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,23 +52,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/empty_title_text" />
 
-        <!--        <include-->
-        <!--            android:id="@+id/empty_view"-->
-        <!--            layout="@layout/empty_view_layout"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pets_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:attachedEmptyView="@{groupEmpty}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:payload="@{petsViewModel.payload}"
-            app:attachedEmptyView="@{groupEmpty}"
             tools:listitem="@layout/pet_list_item" />
 
 
@@ -82,10 +77,10 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.Group
-            android:visibility="gone"
             android:id="@+id/group_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:constraint_referenced_ids="empty_shelter_image,empty_title_text,empty_subtitle_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

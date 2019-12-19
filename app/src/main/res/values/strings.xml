@@ -11,7 +11,7 @@
 -->
 <resources>
     <!-- Name for the application [CHAR LIMIT=12] -->
-    <string name="app_name">Pets</string>
+    <string name="app_name">Pets Shelter</string>
 
     <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
