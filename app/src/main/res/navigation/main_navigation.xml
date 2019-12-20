@@ -10,6 +10,9 @@
         android:name="com.omni.roominkotlinfirsttry.presentation.feature.home.PetsHomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/pets_home_fragment">
+        <argument android:name="petEntry"
+            app:argType="PetEntry"
+             />
         <action
             android:id="@+id/action_petsHomeFragment_to_addEditPetFragment"
             app:destination="@id/addEditPetFragment" />
