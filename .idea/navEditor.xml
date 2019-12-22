@@ -13,8 +13,20 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="132" />
-                            <option name="y" value="24" />
+                            <option name="x" value="145" />
+                            <option name="y" value="118" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="petDetailsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="129" />
+                            <option name="y" value="-263" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -25,13 +37,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-89" />
-                            <option name="y" value="25" />
+                            <option name="x" value="-171" />
+                            <option name="y" value="-147" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="action_petsHomeFragment_to_addEditPetFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_petsHomeFragment_to_petDetailsFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

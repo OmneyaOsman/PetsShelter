@@ -2,8 +2,8 @@ package com.omni.roominkotlinfirsttry.presentation.feature.addeditpet
 
 import android.os.Bundle
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.widget.RadioButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,7 +15,7 @@ class AddEditPetFragment : Fragment() {
 
     private val viewModel by viewModels<PetViewModel>()
     private lateinit var binding: AddEditTaskFragmentBinding
-    private lateinit var gender: String
+    private var gender: String = ""
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,7 +31,16 @@ class AddEditPetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpGenderSpinner()
+        with(binding.maleRadioBtn) {
+            setOnClickListener {
+                onGenderRadioButtonClicked()
+            }
+        }
+        with(binding.femaleRadioBtn) {
+            setOnClickListener {
+                onGenderRadioButtonClicked()
+            }
+        }
         with(binding.editPetName) {
             setOnKeyListener { _, _, _ ->
                 if (isValidEntry()) error = null
@@ -46,21 +55,20 @@ class AddEditPetFragment : Fragment() {
         }
     }
 
-    private fun setUpGenderSpinner() {
-        with(binding.spinnerGender) {
-            adapter = ArrayAdapter.createFromResource(requireContext(), R.array.array_gender_options,
-                    android.R.layout.simple_spinner_item)
 
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    gender = getString(R.string.unknown_breed)
+    private fun RadioButton.onGenderRadioButtonClicked() {
+
+        val checked = isChecked
+
+        when (id) {
+            R.id.male_radio_btn ->
+                if (checked) {
+                    gender = getString(R.string.gender_male)
                 }
-
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    gender = p0.toString()
+            R.id.female_radio_btn ->
+                if (checked) {
+                    gender = getString(R.string.gender_female)
                 }
-
-            }
         }
     }
 
@@ -69,11 +77,13 @@ class AddEditPetFragment : Fragment() {
         val breed = binding.editPetBreed.text.toString()
         val weight = binding.editPetWeight.text.toString()
 
-        if (name.isNotEmpty() && breed.isNotEmpty()) {
+        if (name.isNotEmpty() && breed.isNotEmpty() && gender.isNotEmpty()) {
             val pet = PetEntity(name = name, breed = breed, weight = weight.toDouble(), gender = gender)
             viewModel.savePet(pet)
             findNavController().navigateUp()
         } else {
+            if (gender.isEmpty())
+                Toast.makeText(requireContext(), "Please select Gender", Toast.LENGTH_SHORT).show()
             if (name.isEmpty())
                 binding.editPetName.error = "Required"
             else
