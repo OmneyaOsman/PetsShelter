@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme"
         android:name=".presentation.ShelterApplication"
         >
-        <activity android:name="com.omni.roominkotlinfirsttry.presentation.feature.home.MainActivity">
+        <activity android:name="com.omni.roominkotlinfirsttry.presentation.feature.MainActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

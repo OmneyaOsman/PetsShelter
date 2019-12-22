@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="pet"
             type="com.omni.roominkotlinfirsttry.entities.PetEntity" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
     </data>
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_margin">
+        app:cardCornerRadius="@dimen/padding_4"
+        app:cardPreventCornerOverlap="false"
+        android:onClick="@{clickListener}"
+        android:clickable="true"
+        android:focusable="true">
 
-        <TextView
-            android:id="@+id/name_item_list"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="@{pet.name}"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/blue_black" />
+            android:orientation="vertical"
+            android:padding="@dimen/activity_margin">
 
-        <TextView
-            android:id="@+id/summary_item_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{pet.toString()}"
-            android:fontFamily="sans-serif"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/off_white" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/name_item_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{pet.name}"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/blue_black" />
+
+            <TextView
+                android:id="@+id/summary_item_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@{pet.toString()}"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/off_white" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
 

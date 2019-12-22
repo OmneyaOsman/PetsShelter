@@ -11,7 +11,7 @@
 -->
 <resources>
     <!-- Name for the application [CHAR LIMIT=12] -->
-    <string name="app_name">Pets</string>
+    <string name="app_name">Pets Shelter</string>
 
     <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
@@ -95,4 +95,9 @@
     <string name="unknown_breed">Unknown Breed</string>
     <string name="shelter_image">shelter image</string>
     <string name="required">Required</string>
+    <string name="transition_image">petProfileImage</string>
+    <string name="transition_root">shared root</string>
+    <string name="pet_profile_image">Pet Profile Image</string>
+    <string name="loading_pet_error">Error while loading pet details</string>
+
 </resources>
