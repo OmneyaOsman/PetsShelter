@@ -36,10 +36,11 @@ class PetsHomeFragment : Fragment() {
 
     }
 
+
     private fun setUpPetsRecyclerView() {
         with(binding.petsList) {
-            this.adapter = PetsAdapter()
-            this.addItemDecoration(DividerItemDecoration(requireContext(),
+            adapter = PetsAdapter()
+            addItemDecoration(DividerItemDecoration(requireContext(),
                     DividerItemDecoration.VERTICAL))
         }
     }

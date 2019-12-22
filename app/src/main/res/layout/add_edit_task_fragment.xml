@@ -12,8 +12,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_24"
         android:padding="@dimen/activity_margin"
-        tools:context=".presentation.feature.addeditpet.AddEditPetFragment">
+        tools:context=".presentation.feature.addeditpet.PetDetailsFragment">
 
 
         <TextView
@@ -25,7 +26,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <!-- Name field -->
         <EditText
             android:id="@+id/edit_pet_name"
             style="@style/EditorFieldStyle"
@@ -34,9 +34,10 @@
             android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/overview_label"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/padding_16"
+            android:layout_marginEnd="@dimen/padding_16"/>
 
-        <!-- Breed field -->
         <EditText
             android:id="@+id/edit_pet_breed"
             style="@style/EditorFieldStyle"
@@ -54,47 +55,73 @@
             style="@style/CategoryStyle"
             android:text="@string/category_gender"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_pet_breed" />
+            app:layout_constraintEnd_toStartOf="@id/gender_group"
+            app:layout_constraintTop_toBottomOf="@+id/edit_pet_breed"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/padding_16"
+            />
 
-
-        <!-- Gender drop-down spinner -->
-        <Spinner
-            android:id="@+id/spinner_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:paddingRight="@dimen/padding_16"
-            android:spinnerMode="dropdown"
+        <RadioGroup
+            android:id="@+id/gender_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@+id/gender_label"
-            app:layout_constraintTop_toBottomOf="@+id/edit_pet_breed" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/padding_16"
+           app:layout_constraintTop_toBottomOf="@+id/edit_pet_breed" >
 
+            <RadioButton
+                android:id="@+id/male_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_male"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:layout_marginEnd="@dimen/margin_24"/>
+            <RadioButton
+                android:id="@+id/female_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_female"
+                android:buttonTint="@color/colorPrimaryDark"/>
 
-        <!-- Label -->
+        </RadioGroup>
+
         <TextView
             android:id="@+id/Measurement_label"
             style="@style/CategoryStyle"
             android:text="@string/category_measurement"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gender_label" />
+            android:layout_marginTop="@dimen/padding_16"
+            app:layout_constraintTop_toBottomOf="@+id/gender_group"
+            app:layout_constraintEnd_toStartOf="@id/edit_pet_weight"
+
+            />
 
 
-        <!-- Weight field -->
         <EditText
             android:id="@+id/edit_pet_weight"
             style="@style/EditorFieldStyle"
             android:autofillHints="@string/hint_pet_weight"
             android:hint="@string/hint_pet_weight"
             android:inputType="number"
+            android:layout_marginStart="@dimen/padding_8"
             app:layout_constraintEnd_toStartOf="@+id/label_weight_units"
             app:layout_constraintStart_toEndOf="@+id/Measurement_label"
-            app:layout_constraintTop_toBottomOf="@+id/gender_label" />
+            app:layout_constraintTop_toBottomOf="@+id/gender_group"
+            android:layout_marginTop="@dimen/padding_16"
+            />
 
-        <!-- Units for weight (kg) -->
         <TextView
             android:id="@+id/label_weight_units"
             style="@style/EditorUnitsStyle"
             android:text="@string/unit_pet_weight"
+            android:layout_marginTop="@dimen/padding_16"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gender_label" />
+            app:layout_constraintStart_toEndOf="@id/edit_pet_weight"
+            app:layout_constraintTop_toBottomOf="@+id/gender_group"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

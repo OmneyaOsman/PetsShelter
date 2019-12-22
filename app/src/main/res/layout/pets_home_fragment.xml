@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="petsViewModel"
             type="com.omni.roominkotlinfirsttry.presentation.feature.home.PetsListViewModel" />

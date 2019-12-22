@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="petViewModel"
+            type="com.omni.roominkotlinfirsttry.presentation.feature.petdetails.PetDetailsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- Use a separate view for the background, rather than on the root view because it is a
+        shared element. Otherwise it interferes with the window enter transition i.e. as it is
+        resized for the shared element transition, many views are considered 'off-screen' so
+        visibility transitions are not run. -->
+        <View
+            android:id="@+id/pet_detail_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:importantForAccessibility="no"
+            android:transitionName="@string/transition_root" />
+
+
+        <TextView
+            android:id="@+id/pet_detail_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16"
+            android:layout_marginTop="@dimen/padding_16"
+            android:layout_marginEnd="@dimen/padding_8"
+            android:fontFamily="sans-serif-black"
+            android:text="@{petViewModel.petDetails.name}"
+            android:textSize="@dimen/title_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pet_detail_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16"
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/padding_16"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{petViewModel.petDetails.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pet_detail_name"
+            tools:text="Here are some great shots from my trop to Paris this summer!" />
+
+
+        <ImageView
+            android:id="@+id/pet_detail_avatar"
+            android:layout_width="@dimen/width_40"
+            android:layout_height="@dimen/height_40"
+            android:layout_marginTop="@dimen/padding_8"
+            android:layout_marginEnd="@dimen/padding_16"
+            android:layout_marginBottom="@dimen/padding_8"
+            android:contentDescription="@string/pet_profile_image"
+            android:transitionName="@string/transition_image"
+            app:layout_constraintBottom_toBottomOf="@+id/pet_detail_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pet_detail_summary"
+            tools:src="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

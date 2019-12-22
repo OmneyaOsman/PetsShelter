@@ -1,7 +1,9 @@
 package com.omni.roominkotlinfirsttry.presentation.feature.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +13,26 @@ import com.omni.roominkotlinfirsttry.entities.PetEntity
 //TODO add onClick listener to pass pet and work on delete and update PetEntity
 
 
-class PetsAdapter : PagedListAdapter<PetEntity, PetsAdapter.PetsViewHolder>(PET_COMPARATOR) {
+class PetsAdapter: PagedListAdapter<PetEntity, PetsAdapter.PetsViewHolder>(PET_COMPARATOR) {
 
     class PetsViewHolder private constructor(private val binding: PetListItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.setClickListener {
+                binding.pet?.let { pet ->
+                    navigateToPetDetails(pet, it)
+                }
+            }
+
+        }
+
+        private fun navigateToPetDetails(pet: PetEntity, view: View) {
+            view.findNavController()
+                    .navigate(PetsHomeFragmentDirections
+                            .actionPetsHomeFragmentToPetDetailsFragment(pet.id))
+        }
+
         fun bind(petEntity: PetEntity) {
             binding.pet = petEntity
             binding.executePendingBindings()

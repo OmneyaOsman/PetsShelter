@@ -95,4 +95,9 @@
     <string name="unknown_breed">Unknown Breed</string>
     <string name="shelter_image">shelter image</string>
     <string name="required">Required</string>
+    <string name="transition_image">petProfileImage</string>
+    <string name="transition_root">shared root</string>
+    <string name="pet_profile_image">Pet Profile Image</string>
+    <string name="loading_pet_error">Error while loading pet details</string>
+
 </resources>

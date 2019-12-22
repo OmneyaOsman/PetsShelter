@@ -14,5 +14,5 @@ data class PetEntity @JvmOverloads constructor(
         var weight: Double = 0.0
 ) {
     override fun toString() =
-            "gender:${gender} Breed is : $breed && weight is:$weight"
+            "$name is $gender , $breed  and it's weight  $weight kg"
 }
