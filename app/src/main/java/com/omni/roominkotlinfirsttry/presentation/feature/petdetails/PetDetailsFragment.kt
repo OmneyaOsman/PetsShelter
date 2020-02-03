@@ -12,12 +12,10 @@ import com.omni.roominkotlinfirsttry.databinding.PetDetailsFragmentBinding
 class PetDetailsFragment : Fragment() {
 
     private lateinit var binding: PetDetailsFragmentBinding
-    private val args :PetDetailsFragmentArgs by navArgs()
-    private val viewModel:PetDetailsViewModel by viewModels{
+    private val args: PetDetailsFragmentArgs by navArgs()
+    private val viewModel: PetDetailsViewModel by viewModels {
         PetDetailsViewModelFactory(args.petId)
     }
-
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = PetDetailsFragmentBinding.inflate(inflater, container, false)
@@ -25,6 +23,7 @@ class PetDetailsFragment : Fragment() {
                     petViewModel = viewModel
                     lifecycleOwner = this@PetDetailsFragment
                 }
+
         setHasOptionsMenu(true)
         return binding.root
     }

@@ -70,7 +70,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
-
     //Local test
     testImplementation 'junit:junit:4.12'
     // Room Test helpers

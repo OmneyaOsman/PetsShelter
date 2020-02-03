@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.omni.roominkotlinfirsttry.databinding.PetListItemBinding
 import com.omni.roominkotlinfirsttry.entities.PetEntity
 
-//TODO add onClick listener to pass pet and work on delete and update PetEntity
 
-
-class PetsAdapter: PagedListAdapter<PetEntity, PetsAdapter.PetsViewHolder>(PET_COMPARATOR) {
+class PetsAdapter : PagedListAdapter<PetEntity, PetsAdapter.PetsViewHolder>(PET_COMPARATOR) {
 
     class PetsViewHolder private constructor(private val binding: PetListItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
@@ -58,7 +56,6 @@ class PetsAdapter: PagedListAdapter<PetEntity, PetsAdapter.PetsViewHolder>(PET_C
         getItem(position)?.let {
             holder.bind(it)
         }
-
     }
 
     companion object {
